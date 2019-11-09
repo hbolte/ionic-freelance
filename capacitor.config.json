@@ -1,0 +1,8 @@
+{
+  "appId": "com.hbolte.me",
+  "appName": "hbolte",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

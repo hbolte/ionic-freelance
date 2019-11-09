@@ -1,0 +1,7 @@
+{
+  "name": "hbolte",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
