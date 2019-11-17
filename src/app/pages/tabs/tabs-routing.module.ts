@@ -1,52 +1,62 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {TabsPage} from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'app',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'about',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../about/about.module').then(m => m.AboutPageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'projects',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../projects/projects.module').then(m => m.ProjectsPageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'skills',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../skills/skills.module').then(m => m.SkillsPageModule)
+          }
+        ]
+      },
+      {
+        path: 'contact',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../contact/contact.module').then(m => m.ContactPageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/about',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/app/about',
     pathMatch: 'full'
   }
 ];
@@ -55,4 +65,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule {
+}

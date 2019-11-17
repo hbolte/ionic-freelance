@@ -1,0 +1,30 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+
+    <!-- intro -->
+    <ion-row>
+      <ion-col>
+        <p>For project inquiries or networking choose your favourite platform:</p>
+      </ion-col>
+    </ion-row>
+
+    <!--links -->
+    <ion-list lines="full">
+      <ion-item button detail *ngFor="let link of links" (click)="openLink(link)">
+        <ion-icon slot="start" size="large" [name]="link.icon"></ion-icon>
+        <ion-label>{{link.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+  </ion-grid>
+
+</ion-content>

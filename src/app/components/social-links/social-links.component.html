@@ -1,0 +1,3 @@
+<ion-button *ngFor="let link of links" (click)="openLink(link)" [hidden]="!link.inToolbar">
+  <ion-icon slot="icon-only" [name]="link.icon"></ion-icon>
+</ion-button>
