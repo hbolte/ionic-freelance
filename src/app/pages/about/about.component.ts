@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {APP_CONFIG} from '../../core/config/app.config';
 
 export interface Project {
   name: string;
@@ -12,8 +13,10 @@ export interface Project {
 })
 export class AboutPage {
 
-  constructor() {
+  public aboutText: string;
 
+  constructor() {
+    this.aboutText = APP_CONFIG.about;
   }
 
 }

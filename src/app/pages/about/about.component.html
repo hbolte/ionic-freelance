@@ -1,4 +1,4 @@
-<ion-header no-border>
+<ion-header no-border translucent>
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -9,9 +9,9 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding" fullscreen>
 
-    <ion-grid>
+    <ion-grid fixed>
 
         <ion-row>
             <ion-col>
@@ -24,6 +24,12 @@
         <ion-row>
             <ion-col>
                 <img class="illustration" src="assets/img/about/app.svg" alt="App Development"/>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <p class="about" [innerHTML]="aboutText"></p>
             </ion-col>
         </ion-row>
 
