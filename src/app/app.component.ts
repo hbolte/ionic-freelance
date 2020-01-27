@@ -13,6 +13,24 @@ export class AppComponent {
 
   public menuType: string;
   public logoText: string;
+  public appPages = [
+    {
+      title: 'About',
+      url: '/about'
+    },
+    {
+      title: 'Projects',
+      url: '/projects'
+    },
+    {
+      title: 'Skills',
+      url: '/skills'
+    },
+    {
+      title: 'Contact',
+      url: '/contact'
+    }
+  ];
 
   constructor(
     private platform: Platform,

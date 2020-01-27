@@ -3,3 +3,10 @@
   font-size: 36px;
 }
 
+.active {
+  --ion-background-color: var(--ion-color-light-shade);
+
+  ion-icon {
+    color: inherit;
+  }
+}

@@ -1,15 +1,21 @@
-<ion-split-pane contentId="menu-content">
+<ion-menu contentId="menu-content" [type]="menuType">
+  <ion-header no-border>
+    <ion-toolbar>
+      <ion-title class="logo ion-text-center">{{logoText}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list lines="full">
+      <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+        <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="true">
+          <ion-label>
+            {{p.title}}
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-  <!--  side menu  -->
-  <ion-menu contentId="menu-content" [type]="menuType">
-    <ion-header no-border>
-      <ion-toolbar>
-        <ion-title class="logo ion-text-center">{{logoText}}</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  </ion-menu>
-
-  <!-- main content -->
-  <ion-router-outlet id="menu-content"></ion-router-outlet>
-
-</ion-split-pane>
+<!-- main content -->
+<ion-router-outlet id="menu-content"></ion-router-outlet>
