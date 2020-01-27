@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {APP_CONFIG} from '../../core/config/app.config';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.page.html',
   styleUrls: ['./skills.page.scss'],
 })
-export class SkillsPage implements OnInit {
+export class SkillsPage {
 
-  constructor() { }
+  public skills: string[];
 
-  ngOnInit() {
+  constructor() {
+    this.skills = APP_CONFIG.skills;
   }
-
 }

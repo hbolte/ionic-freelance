@@ -1,9 +1,27 @@
-<ion-header>
+<ion-header no-border translucent>
   <ion-toolbar>
-    <ion-title>skills</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Skills</ion-title>
+    <ion-buttons slot="end">
+      <app-social-links></app-social-links>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding" fullscreen>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="none">
+          <ion-item detail="false" *ngFor="let skill of skills">
+            <ion-label class="ion-text-center">{{skill}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
