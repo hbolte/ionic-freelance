@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
-import {Project} from '../about/about.component';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-tab2',
@@ -10,12 +7,7 @@ import {Project} from '../about/about.component';
 })
 export class ProjectsPage {
 
-  private itemsCollection: AngularFirestoreCollection<Project>;
-  public projects: Observable<Project[]>;
+  constructor() {
 
-  constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<Project>('projects');
-    this.projects = this.itemsCollection.valueChanges();
   }
-
 }

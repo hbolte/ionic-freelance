@@ -1,34 +1,15 @@
-<ion-header no-border>
+<ion-header no-border translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-title class="ion-text-center">Projects</ion-title>
     <ion-buttons slot="end">
       <app-social-links></app-social-links>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-  <div *ngIf="projects | async as list; else loading">
-    <ion-list>
-      <ion-item button *ngFor="let item of list">
-        <ion-label class="ion-text-wrap">
-          <h1>{{item.name}}</h1>
-          <p>{{item.description}}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
-
-  <ng-template #loading>
-    <ion-list lines="none">
-      <ion-label>
-        <h1><ion-skeleton-text width="60%" animated></ion-skeleton-text></h1>
-        <p><ion-skeleton-text width="80%" animated></ion-skeleton-text></p>
-      </ion-label>
-    </ion-list>
-  </ng-template>
+<ion-content class="ion-padding" fullscreen>
 
 </ion-content>
