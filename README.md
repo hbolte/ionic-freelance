@@ -1,4 +1,8 @@
-# ionic-freelance
+# Ionic-Freelance
+
+## Description
+
+Ionic-Freelance is a web application template for freelance software developers who want to share their business with the community and potential customers.
 
 ## Installation
 
