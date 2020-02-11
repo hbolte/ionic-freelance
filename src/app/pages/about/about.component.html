@@ -11,13 +11,13 @@
 
 <ion-content class="ion-padding">
 
-    <ion-grid fixed>
+    <ion-grid *ngIf="personal && settings" fixed>
 
         <ion-row>
             <ion-col>
-                <h1 class="logo ion-text-center">HBolte</h1>
-                <h2 class="ion-text-center">Henrik Bolte</h2>
-                <p class="ion-text-center">Mobile App Developer</p>
+                <h1 class="logo ion-text-center">{{settings.logoText}}</h1>
+                <h2 class="ion-text-center">{{personal.name}}</h2>
+                <p class="ion-text-center">{{personal.profession}}r</p>
             </ion-col>
         </ion-row>
 
@@ -29,10 +29,18 @@
 
         <ion-row>
             <ion-col>
-                <p class="about" [innerHTML]="aboutText"></p>
+                <p class="about" [innerHTML]="personal.about"></p>
             </ion-col>
         </ion-row>
 
+    </ion-grid>
+
+    <ion-grid *ngIf="!personal || !settings" style="height: 100%">
+        <ion-row style="height: 100%">
+            <ion-col class="ion-align-self-center ion-text-center">
+                <ion-spinner name="bubbles"></ion-spinner>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 
 

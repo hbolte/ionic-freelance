@@ -1,7 +1,7 @@
-<ion-menu contentId="menu-content" [type]="menuType">
+<ion-menu *ngIf="settings" contentId="menu-content" [type]="settings.menuType">
   <ion-header class="ion-no-border">
     <ion-toolbar>
-      <ion-title class="logo ion-text-center">{{logoText}}</ion-title>
+      <ion-title class="logo ion-text-center">{{settings.logoText}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>

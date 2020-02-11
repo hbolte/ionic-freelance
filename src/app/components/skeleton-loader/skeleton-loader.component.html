@@ -1,0 +1,10 @@
+<ion-list *ngIf="array" lines="none">
+  <ion-item detail="false" *ngFor="let item of array">
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated="true"></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+      <ion-skeleton-text animated="true"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+</ion-list>

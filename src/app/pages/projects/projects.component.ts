@@ -1,13 +1,40 @@
 import {Component} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {IProject} from '../../core/interfaces/project.interface';
+import {Plugins} from '@capacitor/core';
+
+const {Browser} = Plugins;
 
 @Component({
-  selector: 'app-tab2',
+  selector: 'app-projects',
   templateUrl: 'projects.component.html',
   styleUrls: ['projects.component.scss']
 })
 export class ProjectsPage {
 
-  constructor() {
+  public projects: IProject[];
+  private projectsSub: Subscription;
 
+  constructor(private afs: AngularFirestore) {
+  }
+
+  public ionViewDidEnter() {
+    this.projectsSub = this.afs.collection<IProject>('projects')
+      .valueChanges().subscribe(data => {
+        this.projects = data;
+      })
+  }
+
+  public ionViewDidLeave() {
+    if (this.projectsSub) {
+      this.projectsSub.unsubscribe();
+    }
+  }
+
+  public async openLink(repo: string) {
+    await Browser.open({
+      url: repo
+    });
   }
 }

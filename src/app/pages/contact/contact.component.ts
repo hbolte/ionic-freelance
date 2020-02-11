@@ -1,34 +1,40 @@
 import {Component} from '@angular/core';
-import {APP_CONFIG} from '../../core/config/app.config';
 import {Plugins} from '@capacitor/core';
-import {SocialMediaLink} from '../../components/social-links/social-links.component';
+import {Subscription} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ISocial} from '../../core/interfaces/social.interface';
 
 const {Browser} = Plugins;
 
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: string;
-  inToolbar: boolean;
-}
-
 @Component({
-  selector: 'app-tab3',
+  selector: 'app-contact',
   templateUrl: 'contact.component.html',
   styleUrls: ['contact.component.scss']
 })
 export class ContactPage {
 
-  public links: SocialLink[];
+  public links: ISocial[];
+  private linksSub: Subscription;
 
-  constructor() {
-    this.links = APP_CONFIG.socialLinks;
+  constructor(private afs: AngularFirestore) {
   }
 
-  public async openLink(link: SocialMediaLink) {
+  public ionViewDidEnter() {
+    this.linksSub = this.afs.collection<ISocial>('social')
+      .valueChanges().subscribe(data => {
+        this.links = data;
+      })
+  }
+
+  public ionViewDidLeave() {
+    if (this.linksSub) {
+      this.linksSub.unsubscribe();
+    }
+  }
+
+  public async openLink(link: ISocial) {
     await Browser.open({
       url: link.url
     });
   }
-
 }

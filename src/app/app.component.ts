@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {APP_CONFIG} from './core/config/app.config';
+import {AppService} from './core/provider/app.service';
+import {ISettings} from './core/interfaces/settings.interface';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,6 @@ import {APP_CONFIG} from './core/config/app.config';
 })
 export class AppComponent {
 
-  public menuType: string;
-  public logoText: string;
   public appPages = [
     {
       title: 'About',
@@ -32,18 +31,20 @@ export class AppComponent {
     }
   ];
 
+  public settings: ISettings;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private app: AppService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
 
-    this.menuType = APP_CONFIG.menuType;
-    this.logoText = APP_CONFIG.logoText;
+    this.app.settings$.subscribe(data => this.settings = data);
 
     this.platform.ready().then(() => {
       if (this.platform.is('hybrid')) {

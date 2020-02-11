@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import {APP_CONFIG} from '../../core/config/app.config';
+import {ISkill} from '../../core/interfaces/skill.interface';
+import {Subscription} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-skills',
@@ -8,9 +10,22 @@ import {APP_CONFIG} from '../../core/config/app.config';
 })
 export class SkillsPage {
 
-  public skills: string[];
+  public skills: ISkill[];
+  private skillsSub: Subscription;
 
-  constructor() {
-    this.skills = APP_CONFIG.skills;
+  constructor(private afs: AngularFirestore) {
+  }
+
+  public ionViewDidEnter() {
+    this.skillsSub = this.afs.collection<ISkill>('skills', ref => ref.orderBy('createdAt', 'asc'))
+      .valueChanges().subscribe(data => {
+      this.skills = data;
+    })
+  }
+
+  public ionViewDidLeave() {
+    if (this.skillsSub) {
+      this.skillsSub.unsubscribe();
+    }
   }
 }

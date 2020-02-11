@@ -1,28 +1,28 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Skills</ion-title>
-    <ion-buttons slot="end">
-      <app-social-links></app-social-links>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Skills</ion-title>
+        <ion-buttons slot="end">
+            <app-social-links></app-social-links>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid fixed>
 
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col>
+        <!-- data -->
         <ion-list lines="none">
-          <ion-item detail="false" *ngFor="let skill of skills">
-            <ion-icon slot="start" name="checkmark"></ion-icon>
-            <ion-label class="ion-text-wrap">{{skill}}</ion-label>
-          </ion-item>
+            <ion-item detail="false" *ngFor="let skill of skills">
+                <ion-icon slot="start" name="checkmark"></ion-icon>
+                <ion-label class="ion-text-wrap">{{skill.title}}</ion-label>
+            </ion-item>
         </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
+        <!-- skeleton loader -->
+        <app-skeleton-loader *ngIf="!skills" lines="5"></app-skeleton-loader>
+
+    </ion-grid>
 </ion-content>
