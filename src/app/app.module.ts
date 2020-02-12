@@ -16,7 +16,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot({mode: 'md'}),
+    IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
