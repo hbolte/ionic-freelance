@@ -6,10 +6,22 @@ Ionic-Freelance is a web application template for freelance software developers 
 
 ## Installation
 
-### Cordova
+### Requirements
 
-cordova: 9.0.0
+`npm i -g ionic@5.4.16`
 
-### Ionic
+### Install the dependencies
 
-Ionic CLI: 5.4.16
+`npm i`
+
+### Run the web-app
+`ionic serve -c`
+
+### Run the native app
+```
+ionic build
+npx cap copy
+npx cap open ios/android
+```
+
+This will open the native IDE, Android Studio or Xcode.
