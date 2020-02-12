@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" translucent="true">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -10,8 +10,9 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-grid fixed>
+<ion-content fullscreen="true">
+
+    <ion-grid class="ion-padding" fixed>
 
         <!-- data -->
         <ion-list>
@@ -28,4 +29,5 @@
         <app-skeleton-loader *ngIf="!projects" lines="3"></app-skeleton-loader>
 
     </ion-grid>
+
 </ion-content>

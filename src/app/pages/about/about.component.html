@@ -1,18 +1,18 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" translucent="true">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-title>About me</ion-title>
       <ion-buttons slot="end">
           <app-social-links></app-social-links>
       </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content fullscreen="true">
 
-    <ion-grid *ngIf="personal && settings" fixed>
-
+    <ion-grid *ngIf="personal && settings" class="ion-padding" fixed>
         <ion-row>
             <ion-col>
                 <h1 class="logo ion-text-center">{{settings.logoText}}</h1>
@@ -42,6 +42,5 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
 
 </ion-content>

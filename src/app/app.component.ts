@@ -55,7 +55,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       if (this.platform.is('hybrid')) {
         StatusBar.setStyle({
-          style: StatusBarStyle.Dark,
+          style: this.platform.is('android') ? StatusBarStyle.Dark : StatusBarStyle.Light,
         });
         StatusBar.setBackgroundColor({color: '#949494'});
         SplashScreen.hide();
