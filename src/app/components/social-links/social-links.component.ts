@@ -1,32 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import {APP_CONFIG} from '../../core/config/app.config';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Plugins} from '@capacitor/core';
+import {Subscription} from 'rxjs';
+import {SocialService} from '../../core/provider/social.service';
+import {ISocialLink} from '../../core/interfaces/social.interface';
 
 const {Browser} = Plugins;
-
-export interface SocialMediaLink {
-  icon: string;
-  url: string;
-  inToolbar: boolean;
-}
 
 @Component({
   selector: 'app-social-links',
   templateUrl: './social-links.component.html',
   styleUrls: ['./social-links.component.scss'],
 })
-export class SocialLinksComponent implements OnInit {
+export class SocialLinksComponent implements OnInit, OnDestroy {
 
-  public links: SocialMediaLink[];
+  public links: ISocialLink[];
+  private linksSub: Subscription;
 
-  constructor() {
+  constructor(private social: SocialService) {
   }
 
   ngOnInit() {
-    this.links = APP_CONFIG.socialLinks;
+    this.linksSub = this.social.links$.subscribe(items => this.links = items);
   }
 
-  public async openLink(link: SocialMediaLink) {
+  ngOnDestroy(): void {
+    if (this.linksSub) {
+      this.linksSub.unsubscribe();
+    }
+  }
+
+  public async openLink(link: ISocialLink) {
     await Browser.open({
       url: link.url
     });

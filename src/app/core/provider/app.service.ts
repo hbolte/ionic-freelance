@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {ISettings} from '../interfaces/settings.interface';
 
 @Injectable({
@@ -11,12 +11,12 @@ export class AppService {
   private settingsState = new BehaviorSubject<ISettings>(null);
   public settings$ = this.settingsState.asObservable();
 
-  constructor(private afs: AngularFirestore) {
-    this.listen();
-  }
+  constructor(private afs: AngularFirestore) {}
 
-  private listen(): void {
-    this.afs.doc<ISettings>('settings/app').valueChanges().subscribe(data => this.settingsState.next(data));
+  public listen(): void {
+    this.afs.doc<ISettings>('settings/app')
+      .valueChanges()
+      .subscribe(data => this.settingsState.next(data));
   }
 
 }

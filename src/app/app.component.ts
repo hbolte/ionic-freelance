@@ -4,6 +4,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppService} from './core/provider/app.service';
 import {ISettings} from './core/interfaces/settings.interface';
+import {SocialService} from "./core/provider/social.service";
 
 @Component({
   selector: 'app-root',
@@ -37,12 +38,15 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private app: AppService
+    private app: AppService,
+    private social: SocialService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
+    this.social.listen();
+    this.app.listen();
 
     this.app.settings$.subscribe(data => this.settings = data);
 

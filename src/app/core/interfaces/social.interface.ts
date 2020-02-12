@@ -1,4 +1,4 @@
-export interface ISocial {
+export interface ISocialLink {
   name: string,
   url: string,
   ionicon: string,

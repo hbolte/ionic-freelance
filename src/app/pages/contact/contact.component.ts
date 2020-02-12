@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {Plugins} from '@capacitor/core';
 import {Subscription} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {ISocial} from '../../core/interfaces/social.interface';
+import {ISocialLink} from '../../core/interfaces/social.interface';
+import {SocialService} from '../../core/provider/social.service';
 
 const {Browser} = Plugins;
 
@@ -13,17 +14,14 @@ const {Browser} = Plugins;
 })
 export class ContactPage {
 
-  public links: ISocial[];
+  public links: ISocialLink[];
   private linksSub: Subscription;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private social: SocialService) {
   }
 
   public ionViewDidEnter() {
-    this.linksSub = this.afs.collection<ISocial>('social')
-      .valueChanges().subscribe(data => {
-        this.links = data;
-      })
+    this.linksSub = this.social.links$.subscribe(items => this.links = items);
   }
 
   public ionViewDidLeave() {
@@ -32,7 +30,7 @@ export class ContactPage {
     }
   }
 
-  public async openLink(link: ISocial) {
+  public async openLink(link: ISocialLink) {
     await Browser.open({
       url: link.url
     });
