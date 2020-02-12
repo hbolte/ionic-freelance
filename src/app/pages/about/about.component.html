@@ -17,13 +17,13 @@
             <ion-col>
                 <h1 class="logo ion-text-center">{{settings.logoText}}</h1>
                 <h2 class="ion-text-center">{{personal.name}}</h2>
-                <p class="ion-text-center">{{personal.profession}}r</p>
+                <p class="ion-text-center">{{personal.profession}}</p>
             </ion-col>
         </ion-row>
 
         <ion-row>
             <ion-col>
-                <img class="illustration" src="assets/img/about/app.svg" alt="App Development"/>
+                <ion-img class="illustration" [src]="personal.illustrationUrl"></ion-img>
             </ion-col>
         </ion-row>
 
