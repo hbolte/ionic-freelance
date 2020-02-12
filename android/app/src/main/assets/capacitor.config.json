@@ -3,6 +3,5 @@
   "appName": "Henrik Bolte",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www",
-  "cordova": {}
+  "webDir": "www"
 }

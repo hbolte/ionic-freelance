@@ -15,6 +15,9 @@
       </ion-menu-toggle>
     </ion-list>
   </ion-content>
+  <ion-footer class="ion-text-center" *ngIf="getAppVersion()">
+    <p>{{getAppVersion()}}</p>
+  </ion-footer>
 </ion-menu>
 
 <!-- main content -->

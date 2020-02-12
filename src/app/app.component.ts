@@ -1,10 +1,13 @@
 import {Component} from '@angular/core';
 import {Platform} from '@ionic/angular';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppService} from './core/provider/app.service';
 import {ISettings} from './core/interfaces/settings.interface';
-import {SocialService} from "./core/provider/social.service";
+import {SocialService} from './core/provider/social.service';
+import {DeviceInfo, Plugins, StatusBarStyle} from '@capacitor/core';
+
+const {Device} = Plugins;
+const {StatusBar} = Plugins;
+const {SplashScreen} = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -33,11 +36,10 @@ export class AppComponent {
   ];
 
   public settings: ISettings;
+  public info: DeviceInfo;
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private app: AppService,
     private social: SocialService
   ) {
@@ -52,9 +54,22 @@ export class AppComponent {
 
     this.platform.ready().then(() => {
       if (this.platform.is('hybrid')) {
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
+        StatusBar.setStyle({
+          style: StatusBarStyle.Dark,
+        });
+        StatusBar.setBackgroundColor({color: '#949494'});
+        SplashScreen.hide();
       }
     });
+
+    this.getDeviceInfo();
+  }
+
+  private async getDeviceInfo() {
+    this.info = await Device.getInfo();
+  }
+
+  public getAppVersion(): string {
+    return this.info && this.info.appVersion ? this.info.appVersion : null;
   }
 }
