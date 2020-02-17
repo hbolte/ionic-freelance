@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {IProject} from '../../core/interfaces/project.interface';
 import {Plugins} from '@capacitor/core';
+import {Platform} from '@ionic/angular';
 
 const {Browser} = Plugins;
 
@@ -16,7 +17,10 @@ export class ProjectsPage {
   public projects: IProject[];
   private projectsSub: Subscription;
 
-  constructor(private afs: AngularFirestore) {
+  public translucentHeader: boolean;
+
+  constructor(private afs: AngularFirestore, private plt: Platform) {
+    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
   }
 
   public ionViewDidEnter() {

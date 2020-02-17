@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AboutPageModule} from './pages/about/about.module';
 
 const routes: Routes = [
@@ -23,12 +23,14 @@ const routes: Routes = [
   {
     path: 'contact',
     loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
-  },
+  }
 ];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

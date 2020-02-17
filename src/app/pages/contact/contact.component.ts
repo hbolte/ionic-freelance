@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ISocialLink} from '../../core/interfaces/social.interface';
 import {SocialService} from '../../core/provider/social.service';
+import {Platform} from '@ionic/angular';
 
 const {Browser} = Plugins;
 
@@ -17,7 +18,10 @@ export class ContactPage {
   public links: ISocialLink[];
   private linksSub: Subscription;
 
-  constructor(private afs: AngularFirestore, private social: SocialService) {
+  public translucentHeader: boolean;
+
+  constructor(private afs: AngularFirestore, private social: SocialService, private plt: Platform) {
+    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
   }
 
   public ionViewDidEnter() {

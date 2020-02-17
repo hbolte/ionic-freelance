@@ -4,6 +4,7 @@ import {IPersonal} from '../../core/interfaces/personal.interface';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AppService} from '../../core/provider/app.service';
 import {ISettings} from '../../core/interfaces/settings.interface';
+import {Platform} from '@ionic/angular';
 
 export interface Project {
   name: string;
@@ -23,7 +24,10 @@ export class AboutPage {
   public settings: ISettings;
   public settingsSub: Subscription;
 
-  constructor(private afs: AngularFirestore, private app: AppService) {
+  public translucentHeader: boolean;
+
+  constructor(private afs: AngularFirestore, private app: AppService, private plt: Platform) {
+    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
   }
 
   public ionViewDidEnter() {

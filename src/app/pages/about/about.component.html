@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border" translucent="true">
+<ion-header class="ion-no-border" translucent="{{translucentHeader}}">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -10,7 +10,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content fullscreen="{{translucentHeader}}">
 
     <ion-grid *ngIf="personal && settings" class="ion-padding" fixed>
         <ion-row>
@@ -23,7 +23,7 @@
 
         <ion-row>
             <ion-col>
-                <ion-img class="illustration" [src]="personal.illustrationUrl"></ion-img>
+                <img class="illustration" [src]="personal.illustrationUrl"/>
             </ion-col>
         </ion-row>
 
