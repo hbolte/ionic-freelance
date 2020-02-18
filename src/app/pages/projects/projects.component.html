@@ -12,21 +12,21 @@
 
 <ion-content fullscreen="{{translucentHeader}}">
 
-    <ion-grid class="ion-margin-top" fixed>
+    <ion-grid class="ion-margin-bottom" fixed>
 
         <!-- data -->
         <ion-list>
-            <ion-item detail="false" *ngFor="let project of projects">
+            <ion-item class="ion-margin-top" detail="false" *ngFor="let project of projects">
                 <ion-label class="ion-text-wrap">
                     <h1>{{project.title}}</h1>
                     <p>{{project.desc}}</p>
-                    <p><a (click)="openLink(project.repo)" tappable="true">{{project.repo}}</a></p>
+                    <p><a (click)="openLink(project.link)" tappable="true">{{project.link}}</a></p>
                 </ion-label>
             </ion-item>
         </ion-list>
 
         <!-- skeleton loader -->
-        <app-skeleton-loader *ngIf="!projects" lines="3"></app-skeleton-loader>
+        <app-skeleton-loader *ngIf="!projects" lines="5"></app-skeleton-loader>
 
     </ion-grid>
 

@@ -24,7 +24,7 @@ export class ProjectsPage {
   }
 
   public ionViewDidEnter() {
-    this.projectsSub = this.afs.collection<IProject>('projects')
+    this.projectsSub = this.afs.collection<IProject>('projects', ref => ref.orderBy('createdAt', 'desc'))
       .valueChanges().subscribe(data => {
         this.projects = data;
       })

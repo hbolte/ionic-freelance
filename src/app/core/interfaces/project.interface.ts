@@ -1,5 +1,6 @@
 export interface IProject {
   title: string,
   desc: string,
-  repo: string
+  link: string,
+  createdAt: string
 }
