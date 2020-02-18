@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ISkill} from '../../core/interfaces/skill.interface';
-import {Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Platform} from '@ionic/angular';
 
@@ -11,8 +11,7 @@ import {Platform} from '@ionic/angular';
 })
 export class SkillsPage {
 
-  public skills: ISkill[];
-  private skillsSub: Subscription;
+  public skills$: Observable<ISkill[]>;
 
   public translucentHeader: boolean;
 
@@ -21,15 +20,10 @@ export class SkillsPage {
   }
 
   public ionViewDidEnter() {
-    this.skillsSub = this.afs.collection<ISkill>('skills', ref => ref.orderBy('createdAt', 'asc'))
-      .valueChanges().subscribe(data => {
-        this.skills = data;
-      })
+    this.skills$ = this.afs.collection<ISkill>(
+      'skills',
+      ref => ref.orderBy('createdAt', 'asc'))
+    .valueChanges()
   }
 
-  public ionViewDidLeave() {
-    if (this.skillsSub) {
-      this.skillsSub.unsubscribe();
-    }
-  }
 }

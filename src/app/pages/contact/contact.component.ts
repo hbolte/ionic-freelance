@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {Plugins} from '@capacitor/core';
-import {Subscription} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ISocialLink} from '../../core/interfaces/social.interface';
-import {SocialService} from '../../core/provider/social.service';
 import {Platform} from '@ionic/angular';
+import {Observable} from 'rxjs';
 
 const {Browser} = Plugins;
 
@@ -15,23 +14,16 @@ const {Browser} = Plugins;
 })
 export class ContactPage {
 
-  public links: ISocialLink[];
-  private linksSub: Subscription;
+  public links$: Observable<ISocialLink[]>;
 
   public translucentHeader: boolean;
 
-  constructor(private afs: AngularFirestore, private social: SocialService, private plt: Platform) {
+  constructor(private afs: AngularFirestore, private plt: Platform) {
     this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
   }
 
   public ionViewDidEnter() {
-    this.linksSub = this.social.links$.subscribe(items => this.links = items);
-  }
-
-  public ionViewDidLeave() {
-    if (this.linksSub) {
-      this.linksSub.unsubscribe();
-    }
+    this.links$ = this.afs.collection<ISocialLink>('social').valueChanges()
   }
 
   public async openLink(link: ISocialLink) {

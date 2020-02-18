@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Plugins} from '@capacitor/core';
-import {Subscription} from 'rxjs';
-import {SocialService} from '../../core/provider/social.service';
+import {Observable} from 'rxjs';
 import {ISocialLink} from '../../core/interfaces/social.interface';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 const {Browser} = Plugins;
 
@@ -11,22 +11,15 @@ const {Browser} = Plugins;
   templateUrl: './social-links.component.html',
   styleUrls: ['./social-links.component.scss'],
 })
-export class SocialLinksComponent implements OnInit, OnDestroy {
+export class SocialLinksComponent implements OnInit {
 
-  public links: ISocialLink[];
-  private linksSub: Subscription;
+  public links$: Observable<ISocialLink[]>;
 
-  constructor(private social: SocialService) {
+  constructor(private afs: AngularFirestore) {
   }
 
   ngOnInit() {
-    this.linksSub = this.social.links$.subscribe(items => this.links = items);
-  }
-
-  ngOnDestroy(): void {
-    if (this.linksSub) {
-      this.linksSub.unsubscribe();
-    }
+    this.links$ = this.afs.collection<ISocialLink>('social').valueChanges()
   }
 
   public async openLink(link: ISocialLink) {

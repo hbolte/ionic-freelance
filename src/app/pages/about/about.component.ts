@@ -1,15 +1,11 @@
 import {Component} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {IPersonal} from '../../core/interfaces/personal.interface';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AppService} from '../../core/provider/app.service';
 import {ISettings} from '../../core/interfaces/settings.interface';
 import {Platform} from '@ionic/angular';
 
-export interface Project {
-  name: string;
-  description: string;
-}
 
 @Component({
   selector: 'app-about',
@@ -18,11 +14,8 @@ export interface Project {
 })
 export class AboutPage {
 
-  public personal: IPersonal;
-  private personalSub: Subscription;
-
-  public settings: ISettings;
-  public settingsSub: Subscription;
+  public personal$: Observable<IPersonal>;
+  public settings$: Observable<ISettings>;
 
   public translucentHeader: boolean;
 
@@ -31,21 +24,8 @@ export class AboutPage {
   }
 
   public ionViewDidEnter() {
-    this.personalSub = this.afs.doc<IPersonal>('personal/data').valueChanges().subscribe(data => {
-      this.personal = data;
-    });
-
-    this.settingsSub = this.app.settings$.subscribe(data => this.settings = data);
-  }
-
-  public ionViewDidLeave() {
-    if (this.personalSub) {
-      this.personalSub.unsubscribe();
-    }
-
-    if (this.settingsSub) {
-      this.settingsSub.unsubscribe();
-    }
+    this.personal$ = this.afs.doc<IPersonal>('personal/data').valueChanges();
+    this.settings$ = this.afs.doc<ISettings>('settings/app').valueChanges();
   }
 
 }

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {AppService} from './core/provider/app.service';
 import {ISettings} from './core/interfaces/settings.interface';
-import {SocialService} from './core/provider/social.service';
 import {DeviceInfo, Plugins, StatusBarStyle} from '@capacitor/core';
 
 const {Device} = Plugins;
@@ -40,14 +39,11 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private app: AppService,
-    private social: SocialService
-  ) {
+    private app: AppService) {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.social.listen();
     this.app.listen();
 
     this.app.settings$.subscribe(data => this.settings = data);

@@ -4,43 +4,47 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>About me</ion-title>
-      <ion-buttons slot="end">
-          <app-social-links></app-social-links>
-      </ion-buttons>
+        <ion-buttons slot="end">
+            <app-social-links></app-social-links>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="{{translucentHeader}}">
 
-    <ion-grid *ngIf="personal && settings" class="ion-padding" fixed>
-        <ion-row>
-            <ion-col>
-                <h1 class="logo ion-text-center">{{settings.logoText}}</h1>
-                <h2 class="ion-text-center">{{personal.name}}</h2>
-                <p class="ion-text-center">{{personal.profession}}</p>
-            </ion-col>
-        </ion-row>
+    <ng-container *ngIf="{settings: settings$ | async, personal: personal$ | async} as data">
+        <ion-grid *ngIf="data.personal && data.settings; else loading" class="ion-padding" fixed>
+            <ion-row>
+                <ion-col>
+                    <h1 class="logo ion-text-center">{{data.settings.logoText}}</h1>
+                    <h2 class="ion-text-center">{{data.personal.name}}</h2>
+                    <p class="ion-text-center">{{data.personal.profession}}</p>
+                </ion-col>
+            </ion-row>
 
-        <ion-row>
-            <ion-col>
-                <img class="illustration" [src]="personal.illustrationUrl"/>
-            </ion-col>
-        </ion-row>
+            <ion-row class="illustration">
+                <ion-col>
+                    <img [src]="data.personal.illustrationUrl"/>
+                </ion-col>
+            </ion-row>
 
-        <ion-row>
-            <ion-col>
-                <p class="about" [innerHTML]="personal.about"></p>
-            </ion-col>
-        </ion-row>
+            <ion-row>
+                <ion-col>
+                    <p class="about" [innerHTML]="data.personal.about"></p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-    </ion-grid>
+        <ng-template #loading>
+            <ion-grid style="height: 100%">
+                <ion-row style="height: 100%">
+                    <ion-col class="ion-align-self-center ion-text-center">
+                        <ion-spinner name="bubbles"></ion-spinner>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ng-template>
 
-    <ion-grid *ngIf="!personal || !settings" style="height: 100%">
-        <ion-row style="height: 100%">
-            <ion-col class="ion-align-self-center ion-text-center">
-                <ion-spinner name="bubbles"></ion-spinner>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    </ng-container>
 
 </ion-content>

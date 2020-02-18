@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {IProject} from '../../core/interfaces/project.interface';
 import {Plugins} from '@capacitor/core';
@@ -14,8 +14,7 @@ const {Browser} = Plugins;
 })
 export class ProjectsPage {
 
-  public projects: IProject[];
-  private projectsSub: Subscription;
+  public projects$: Observable<IProject[]>;
 
   public translucentHeader: boolean;
 
@@ -24,16 +23,10 @@ export class ProjectsPage {
   }
 
   public ionViewDidEnter() {
-    this.projectsSub = this.afs.collection<IProject>('projects', ref => ref.orderBy('createdAt', 'desc'))
-      .valueChanges().subscribe(data => {
-        this.projects = data;
-      })
-  }
-
-  public ionViewDidLeave() {
-    if (this.projectsSub) {
-      this.projectsSub.unsubscribe();
-    }
+    this.projects$ = this.afs.collection<IProject>(
+      'projects',
+      ref => ref.orderBy('createdAt', 'desc'))
+    .valueChanges()
   }
 
   public async openLink(repo: string) {

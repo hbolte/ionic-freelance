@@ -14,16 +14,17 @@
 
     <ion-grid class="ion-margin-top" fixed>
 
-        <!-- data -->
-        <ion-list lines="none">
+        <ion-list *ngIf="skills$ | async as skills; else loading" lines="none">
             <ion-item detail="false" *ngFor="let skill of skills">
                 <ion-icon slot="start" name="checkmark"></ion-icon>
                 <ion-label class="ion-text-wrap">{{skill.title}}</ion-label>
             </ion-item>
         </ion-list>
 
-        <!-- skeleton loader -->
-        <app-skeleton-loader *ngIf="!skills" lines="5"></app-skeleton-loader>
+        <ng-template #loading>
+            <app-skeleton-loader lines="5"></app-skeleton-loader>
+        </ng-template>
 
     </ion-grid>
+
 </ion-content>

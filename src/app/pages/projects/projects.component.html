@@ -15,7 +15,7 @@
     <ion-grid class="ion-margin-bottom" fixed>
 
         <!-- data -->
-        <ion-list>
+        <ion-list *ngIf="projects$ | async as projects; else loading">
             <ion-item class="ion-margin-top" detail="false" *ngFor="let project of projects">
                 <ion-label class="ion-text-wrap">
                     <h1>{{project.title}}</h1>
@@ -25,8 +25,9 @@
             </ion-item>
         </ion-list>
 
-        <!-- skeleton loader -->
-        <app-skeleton-loader *ngIf="!projects" lines="5"></app-skeleton-loader>
+        <ng-template #loading>
+            <app-skeleton-loader lines="6"></app-skeleton-loader>
+        </ng-template>
 
     </ion-grid>
 
