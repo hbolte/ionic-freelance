@@ -12,19 +12,27 @@
 
 <ion-content fullscreen="{{translucentHeader}}">
 
-    <ion-grid class="ion-margin-top" fixed>
-
-        <ion-list *ngIf="skills$ | async as skills; else loading" lines="none">
-            <ion-item detail="false" *ngFor="let skill of skills">
-                <ion-icon slot="start" name="checkmark"></ion-icon>
-                <ion-label class="ion-text-wrap">{{skill.title}}</ion-label>
-            </ion-item>
-        </ion-list>
-
-        <ng-template #loading>
-            <app-skeleton-loader lines="5"></app-skeleton-loader>
-        </ng-template>
-
+    <ion-grid class="h100" fixed="true">
+        <ion-slides class="h100" *ngIf="skills$ | async as skills; else loading" [options]="options" pager="true">
+            <ion-slide class="h100" *ngFor="let skill of skills">
+                <ion-row class="h100">
+                    <ion-col class="ion-align-self-center">
+                        <ion-row class="ion-margin icon">
+                            <ion-col class="ion-align-self-center">
+                                <ion-icon [name]="skill.ionicon"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <h1 class="ion-margin-top ion-padding">{{skill.title}}</h1>
+                    </ion-col>
+                </ion-row>
+            </ion-slide>
+        </ion-slides>
     </ion-grid>
+
+    <ng-template #loading>
+        <ion-grid class="ion-margin-top" fixed>
+            <app-skeleton-loader lines="5"></app-skeleton-loader>
+        </ion-grid>
+    </ng-template>
 
 </ion-content>

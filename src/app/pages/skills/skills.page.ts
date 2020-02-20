@@ -13,6 +13,15 @@ export class SkillsPage {
 
   public skills$: Observable<ISkill[]>;
 
+  public options = {
+    initialSlide: 1,
+    speed: 500,
+    centeredSlides: true,
+    autoplay: {
+      delay: 4000
+    }
+  };
+
   public translucentHeader: boolean;
 
   constructor(private afs: AngularFirestore, private plt: Platform) {
