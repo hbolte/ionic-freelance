@@ -14,12 +14,12 @@ export class SkillsPage {
   public skills$: Observable<ISkill[]>;
 
   public options = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 500,
-    centeredSlides: true,
     autoplay: {
       delay: 4000
-    }
+    },
+    loop: true
   };
 
   public translucentHeader: boolean;
