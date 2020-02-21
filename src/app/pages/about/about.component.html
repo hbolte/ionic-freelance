@@ -17,16 +17,16 @@
 
             <!-- headline -->
             <ion-row>
-                <ion-col>
+                <ion-col class="ion-text-center">
                     <h1 class="ion-text-center">{{data.settings.title}}</h1>
-                    <ion-text color="medium">
-                        <p class="ion-text-center">{{data.settings.subTitle}}</p>
+                    <ion-text color="medium" class="ion-text-center">
+                        <p class="subtitle">{{data.settings.subTitle}}</p>
                     </ion-text>
                 </ion-col>
             </ion-row>
 
             <!-- team -->
-            <ion-row style="margin-top: 50px">
+            <ion-row class="team">
                 <ion-col *ngFor="let partner of data.team" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
                     <ion-card button="true" (click)="openBiography(partner)">
                         <ion-card-header class="ion-text-center">
