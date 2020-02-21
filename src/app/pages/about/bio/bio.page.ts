@@ -4,6 +4,9 @@ import {ModalController, Platform} from '@ionic/angular';
 import {Observable} from 'rxjs';
 import {ISocialLink} from '../../../core/interfaces/social.interface';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Plugins} from '@capacitor/core';
+
+const {Browser} = Plugins;
 
 @Component({
   selector: 'app-bio',
@@ -32,6 +35,12 @@ export class BioPage {
 
   public closeModal() {
     this.modalController.dismiss();
+  }
+
+  public async openLink(link: ISocialLink) {
+    await Browser.open({
+      url: link.url
+    });
   }
 
 }
