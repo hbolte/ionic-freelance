@@ -11,7 +11,6 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     IonicModule,
     RouterModule.forChild([{path: 'modal/bio', component: BioPage}]),
-
   ],
   declarations: [BioPage]
 })

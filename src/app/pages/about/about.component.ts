@@ -6,6 +6,7 @@ import {AppService} from '../../core/provider/app.service';
 import {ISettings} from '../../core/interfaces/settings.interface';
 import {ModalController, Platform} from '@ionic/angular';
 import {BioPage} from './bio/bio.page';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -30,8 +31,16 @@ export class AboutPage {
   }
 
   public ionViewDidEnter() {
-    this.team$ = this.afs.collection<IPersonal>('team').valueChanges();
     this.settings$ = this.afs.doc<ISettings>('settings/app').valueChanges();
+
+    // for team members we need the unique document id
+    this.team$ = this.afs.collection('team').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as IPersonal;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      }))
+    );
   }
 
   public async openBiography(person: IPersonal) {

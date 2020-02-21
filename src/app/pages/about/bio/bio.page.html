@@ -12,6 +12,17 @@
 <ion-content class="ion-padding" fullscreen="{{translucentHeader}}">
 
     <ion-grid fixed="true">
+
+        <div *ngIf="links$ | async as links; else loading">
+            <ion-button size="small" shape="round" *ngFor="let link of links">
+                <ion-icon size="small" [name]="link.ionicon" slot="icon-only"></ion-icon>
+            </ion-button>
+        </div>
+
+        <ng-template #loading>
+            <ion-spinner color="primary" name="dots"></ion-spinner>
+        </ng-template>
+
         <ion-row>
             <ion-col>
                 <p [innerHTML]="person.about"></p>

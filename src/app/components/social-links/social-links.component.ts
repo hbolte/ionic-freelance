@@ -19,7 +19,10 @@ export class SocialLinksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.links$ = this.afs.collection<ISocialLink>('social').valueChanges()
+    this.links$ = this.afs.collection<ISocialLink>(
+      'social',
+      ref => ref.where('scope', '==', 'team'))
+    .valueChanges()
   }
 
   public async openLink(link: ISocialLink) {
