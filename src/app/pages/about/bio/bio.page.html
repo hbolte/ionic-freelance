@@ -1,0 +1,22 @@
+<ion-header class="ion-no-border" translucent="{{translucentHeader}}">
+    <ion-toolbar>
+        <ion-title>{{person.name}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen="{{translucentHeader}}">
+
+    <ion-grid fixed="true">
+        <ion-row>
+            <ion-col>
+                <p [innerHTML]="person.about"></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

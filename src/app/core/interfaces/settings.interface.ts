@@ -1,4 +1,6 @@
 export interface ISettings {
-  menuType: string,
-  logoText: string
+  title: string,
+  subTitle: string,
+  menuTitle: string,
+  menuType: string
 }

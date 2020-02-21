@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>About me</ion-title>
+        <ion-title>About</ion-title>
         <ion-buttons slot="end">
             <app-social-links></app-social-links>
         </ion-buttons>
@@ -12,27 +12,39 @@
 
 <ion-content fullscreen="{{translucentHeader}}">
 
-    <ng-container *ngIf="{settings: settings$ | async, personal: personal$ | async} as data">
-        <ion-grid *ngIf="data.personal && data.settings; else loading" class="ion-padding" fixed>
+    <ng-container *ngIf="{settings: settings$ | async, team: team$ | async} as data">
+        <ion-grid *ngIf="data.team && data.settings; else loading" class="ion-padding" fixed>
+
+            <!-- headline -->
             <ion-row>
                 <ion-col>
-                    <h1 class="logo ion-text-center">{{data.settings.logoText}}</h1>
-                    <h2 class="ion-text-center">{{data.personal.name}}</h2>
-                    <p class="ion-text-center">{{data.personal.profession}}</p>
+                    <h1 class="ion-text-center">{{data.settings.title}}</h1>
+                    <ion-text color="medium">
+                        <p class="ion-text-center">{{data.settings.subTitle}}</p>
+                    </ion-text>
                 </ion-col>
             </ion-row>
 
+            <!-- team -->
+            <ion-row style="margin-top: 50px">
+                <ion-col *ngFor="let partner of data.team" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                    <ion-card button="true" (click)="openBiography(partner)">
+                        <ion-card-header class="ion-text-center">
+                            <ion-card-title>{{partner.name}}</ion-card-title>
+                            <ion-card-subtitle>{{partner.profession}}</ion-card-subtitle>
+                            <ion-icon class="ion-margin-top" size="small" name="open-outline"></ion-icon>
+                        </ion-card-header>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <!-- logo -->
             <ion-row class="illustration">
                 <ion-col>
-                    <img [src]="data.personal.illustrationUrl"/>
+                    <img src="assets/img/about/app.svg"/>
                 </ion-col>
             </ion-row>
 
-            <ion-row>
-                <ion-col>
-                    <p class="about" [innerHTML]="data.personal.about"></p>
-                </ion-col>
-            </ion-row>
         </ion-grid>
 
         <ng-template #loading>
