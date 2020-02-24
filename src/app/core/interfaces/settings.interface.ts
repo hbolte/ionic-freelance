@@ -3,5 +3,8 @@ export interface ISettings {
   subTitle: string,
   menuTitle: string,
   menuType: string,
-  imprint: string
+  legal: {
+    imprint: string,
+    privacy: string
+  }
 }

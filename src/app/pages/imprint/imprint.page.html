@@ -4,6 +4,9 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>Imprint</ion-title>
+        <ion-buttons slot="end">
+            <app-social-links></app-social-links>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -13,7 +16,7 @@
 
         <ion-row *ngIf="settings$ | async as data; else loading">
             <ion-col>
-                <div [innerHTML]="data.imprint"></div>
+                <div [innerHTML]="data.legal.imprint"></div>
             </ion-col>
         </ion-row>
 

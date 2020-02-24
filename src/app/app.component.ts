@@ -31,10 +31,17 @@ export class AppComponent {
     {
       title: 'Contact',
       url: '/contact'
-    },
+    }
+  ];
+
+  public legalPages = [
     {
       title: 'Imprint',
       url: '/imprint'
+    },
+    {
+      title: 'Privacy',
+      url: '/privacy'
     }
   ];
 
