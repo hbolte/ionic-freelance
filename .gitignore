@@ -31,3 +31,8 @@ npm-debug.log*
 /www
 
 /android/.idea
+
+// firebase
+.firebaserc
+.firebase/*
+firebase.json
