@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>imprint</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border" translucent="{{translucentHeader}}">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Imprint</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="{{translucentHeader}}">
+
+    <ion-grid class="ion-padding" fixed>
+
+        <ion-row *ngIf="settings$ | async as data; else loading">
+            <ion-col>
+                <div [innerHTML]="data.imprint"></div>
+            </ion-col>
+        </ion-row>
+
+        <ng-template #loading>
+            <app-skeleton-loader lines="5"></app-skeleton-loader>
+        </ng-template>
+
+    </ion-grid>
 
 </ion-content>

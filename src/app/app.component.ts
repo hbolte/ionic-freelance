@@ -31,6 +31,10 @@ export class AppComponent {
     {
       title: 'Contact',
       url: '/contact'
+    },
+    {
+      title: 'Imprint',
+      url: '/imprint'
     }
   ];
 
