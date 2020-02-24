@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border" translucent="{{translucentHeader}}">
+<ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -10,7 +10,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="{{translucentHeader}}">
+<ion-content>
 
     <ng-container *ngIf="{settings: settings$ | async, team: team$ | async} as data">
         <ion-grid *ngIf="data.team && data.settings; else loading" class="ion-padding" fixed>

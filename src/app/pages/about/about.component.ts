@@ -4,7 +4,7 @@ import {IPersonal} from '../../core/interfaces/personal.interface';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AppService} from '../../core/provider/app.service';
 import {ISettings} from '../../core/interfaces/settings.interface';
-import {ModalController, Platform} from '@ionic/angular';
+import {ModalController} from '@ionic/angular';
 import {BioPage} from './bio/bio.page';
 import {map} from 'rxjs/operators';
 
@@ -19,15 +19,10 @@ export class AboutPage {
   public team$: Observable<IPersonal[]>;
   public settings$: Observable<ISettings>;
 
-  public translucentHeader: boolean;
-
   constructor(
     private afs: AngularFirestore,
     private app: AppService,
-    private plt: Platform,
-    private modalCtrl: ModalController)
-  {
-    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
+    private modalCtrl: ModalController) {
   }
 
   public ionViewDidEnter() {

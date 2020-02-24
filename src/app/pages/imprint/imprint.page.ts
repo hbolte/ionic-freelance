@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ISettings} from '../../core/interfaces/settings.interface';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-imprint',
@@ -15,8 +14,7 @@ export class ImprintPage {
 
   public translucentHeader: boolean;
 
-  constructor(private afs: AngularFirestore, private plt: Platform) {
-    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
+  constructor(private afs: AngularFirestore) {
   }
 
   public ionViewDidEnter() {
