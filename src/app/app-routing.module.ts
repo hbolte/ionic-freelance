@@ -23,6 +23,14 @@ const routes: Routes = [
   {
     path: 'contact',
     loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
+  },
+  {
+    path: 'imprint',
+    loadChildren: () => import('./pages/imprint/imprint.module').then( m => m.ImprintPageModule)
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./pages/privacy/privacy.module').then( m => m.PrivacyPageModule)
   }
 ];
 
