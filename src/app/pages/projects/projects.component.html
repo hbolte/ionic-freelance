@@ -14,11 +14,14 @@
 
     <ion-grid class="ion-margin-bottom" fixed>
 
-        <!-- data -->
         <ion-list *ngIf="projects$ | async as projects; else loading">
             <ion-item class="ion-margin-top" detail="false" *ngFor="let project of projects">
                 <ion-label class="ion-text-wrap">
                     <h1>{{project.title}}</h1>
+                    <p class="scope" *ngIf="project.scope == null">Team</p>
+                    <p class="scope" *ngIf="project.scope != null">
+                        {{('team/' + project.scope | doc | async)?.name}}
+                    </p>
                     <p>{{project.desc}}</p>
                     <p><a (click)="openLink(project.link)" tappable="true">{{project.link}}</a></p>
                 </ion-label>

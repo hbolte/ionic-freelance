@@ -3,12 +3,14 @@ import {IonicModule} from '@ionic/angular';
 import {CommonModule} from '@angular/common';
 import {SocialLinksComponent} from './social-links/social-links.component';
 import {SkeletonLoaderComponent} from './skeleton-loader/skeleton-loader.component';
+import {DocPipe} from '../core/pipes/doc.pipe';
 
 
 @NgModule({
   declarations: [
     SocialLinksComponent,
-    SkeletonLoaderComponent
+    SkeletonLoaderComponent,
+    DocPipe
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import {SkeletonLoaderComponent} from './skeleton-loader/skeleton-loader.compone
   ],
   exports: [
     SocialLinksComponent,
-    SkeletonLoaderComponent
+    SkeletonLoaderComponent,
+    DocPipe
   ]
 })
 export class ComponentsModule {
