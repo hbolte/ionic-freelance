@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Plugins} from '@capacitor/core';
 import {Observable} from 'rxjs';
-import {ISocialLink} from '../../core/interfaces/social.interface';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {ISocialLink} from '../../core/models/social.interface';
+import {ContentfulService} from '../../core/contentful/provider/contentful.service';
 
 const {Browser} = Plugins;
 
@@ -15,14 +15,11 @@ export class SocialLinksComponent implements OnInit {
 
   public links$: Observable<ISocialLink[]>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private contentfulService: ContentfulService) {
   }
 
   ngOnInit() {
-    this.links$ = this.afs.collection<ISocialLink>(
-      'social',
-      ref => ref.where('scope', '==', 'team'))
-    .valueChanges()
+    this.links$ = this.contentfulService.getEntries('social');
   }
 
   public async openLink(link: ISocialLink) {
