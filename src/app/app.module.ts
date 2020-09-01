@@ -10,6 +10,13 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {ContentfulModule} from './core/contentful/contentful-module';
+import {ContentfulConfig} from './core/contentful/models/contentful-config';
+
+const contentfulConfig: ContentfulConfig = {
+  spaceId: '<YOUR-ID>',
+  accessToken: '<YOUR-TOKEN>'
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +27,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    ContentfulModule.forRoot(contentfulConfig)
   ],
   providers: [
     StatusBar,
