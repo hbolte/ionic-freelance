@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {IProject} from '../../core/interfaces/project.interface';
+import {Observable} from 'rxjs';
+import {IProject} from '../../core/models/project.interface';
 import {Plugins} from '@capacitor/core';
-import {Platform} from '@ionic/angular';
+import {ContentfulService} from '../../core/contentful/provider/contentful.service';
+import {documentToHtmlString} from '@contentful/rich-text-html-renderer';
 
 const {Browser} = Plugins;
 
@@ -16,22 +16,22 @@ export class ProjectsPage {
 
   public projects$: Observable<IProject[]>;
 
-  public translucentHeader: boolean;
-
-  constructor(private afs: AngularFirestore, private plt: Platform) {
-    this.plt.ready().then(() => this.translucentHeader = this.plt.is('ios'));
+  constructor(private contentfulService: ContentfulService) {
   }
 
   public ionViewDidEnter() {
-    this.projects$ = this.afs.collection<IProject>(
-      'projects',
-      ref => ref.orderBy('createdAt', 'desc'))
-    .valueChanges()
+    this.projects$ = this.contentfulService.getEntries('projects', {
+      order: '-fields.createdAt',
+    });
   }
 
   public async openLink(repo: string) {
     await Browser.open({
       url: repo
     });
+  }
+
+  public parseRichText(richText: any) {
+    return documentToHtmlString(richText);
   }
 }
