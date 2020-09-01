@@ -14,9 +14,13 @@
 
     <ion-grid class="ion-padding" fixed>
 
-        <ion-row *ngIf="settings$ | async as data; else loading">
-            <ion-col>
-                <div [innerHTML]="data.legal.imprint"></div>
+        <ion-row *ngIf="imprint$ | async as imprint; else loading">
+            <ion-col size="6" sizeSm="12" sizeXs="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                <div [innerHTML]="parseRichText(imprint.content)"></div>
+            </ion-col>
+
+            <ion-col size="6" sizeSm="12" sizeXs="12" sizeMd="6" sizeLg="6" sizeXl="6" class="ion-align-self-center ion-text-center">
+                <img class="img-legal" src="assets/img/illustration-imprint.svg" alt="">
             </ion-col>
         </ion-row>
 

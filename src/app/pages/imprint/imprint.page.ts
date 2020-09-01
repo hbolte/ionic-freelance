@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ISettings} from '../../core/interfaces/settings.interface';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {ILegal} from '../../core/models/legal.interface';
+import {ContentfulService, ContentTypeLegal} from '../../core/contentful/provider/contentful.service';
 
 @Component({
   selector: 'app-imprint',
@@ -10,15 +10,19 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class ImprintPage {
 
-  public settings$: Observable<ISettings>;
+  public imprint$: Observable<ILegal>;
 
   public translucentHeader: boolean;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private contentfulService: ContentfulService) {
   }
 
   public ionViewDidEnter() {
-    this.settings$ = this.afs.doc<ISettings>('settings/app').valueChanges();
+    this.imprint$ = this.contentfulService.getLegalEntry(ContentTypeLegal.IMPRINT);
+  }
+
+  public parseRichText(richText: any) {
+    return this.contentfulService.parseRichText(richText);
   }
 
 }
