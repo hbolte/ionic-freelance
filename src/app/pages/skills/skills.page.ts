@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ISkill} from '../../core/interfaces/skill.interface';
+import {ISkill} from '../../core/models/skill.interface';
 import {Observable} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {ContentfulService} from '../../core/contentful/provider/contentful.service';
 
 @Component({
   selector: 'app-skills',
@@ -21,14 +21,11 @@ export class SkillsPage {
     loop: true
   };
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private contentfulService: ContentfulService) {
   }
 
   public ionViewDidEnter() {
-    this.skills$ = this.afs.collection<ISkill>(
-      'skills',
-      ref => ref.orderBy('createdAt', 'asc'))
-      .valueChanges()
+    this.skills$ = this.contentfulService.getEntries('skills');
   }
 
 }
