@@ -1,29 +1,29 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Privacy Policy</ion-title>
-    <ion-buttons slot="end">
-      <app-social-links></app-social-links>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Privacy Policy</ion-title>
+        <ion-buttons slot="end">
+            <app-social-links></app-social-links>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid class="ion-padding" fixed>
+    <ion-grid class="ion-padding" fixed>
 
-    <ion-row *ngIf="settings$ | async as data; else loading">
-      <ion-col>
-        <div [innerHTML]="data.legal.privacy"></div>
-      </ion-col>
-    </ion-row>
+        <ion-row *ngIf="policy$ | async as policy; else loading">
+            <ion-col>
+                <div class="inner-html" [innerHTML]="parseRichText(policy.content)"></div>
+            </ion-col>
+        </ion-row>
 
-    <ng-template #loading>
-      <app-skeleton-loader lines="5"></app-skeleton-loader>
-    </ng-template>
+        <ng-template #loading>
+            <app-skeleton-loader lines="5"></app-skeleton-loader>
+        </ng-template>
 
-  </ion-grid>
+    </ion-grid>
 
 </ion-content>
