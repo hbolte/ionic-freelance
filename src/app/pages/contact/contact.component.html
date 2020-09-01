@@ -7,23 +7,25 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
-    <ion-grid class="ion-padding" fixed>
+    <ion-grid fixed>
 
         <div *ngIf="links$ | async as links; else loading">
+
             <ion-row>
-                <ion-col>
-                    <p>For project inquiries or networking feel free to contact us.</p>
+                <ion-col class="ion-text-center">
+                    <img class="img-contact" src="assets/img/illustration-contact.svg" alt="">
                 </ion-col>
             </ion-row>
 
-            <ion-list lines="none">
-                <ion-item button detail color="none" *ngFor="let link of links" (click)="openLink(link)">
+            <ion-list lines="full">
+                <ion-item button detail *ngFor="let link of links" (click)="openLink(link)">
                     <ion-icon slot="start" size="large" [name]="link.ionicon"></ion-icon>
                     <ion-label>{{link.name}}</ion-label>
                 </ion-item>
             </ion-list>
+
         </div>
 
         <ng-template #loading>
