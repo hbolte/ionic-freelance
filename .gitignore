@@ -32,7 +32,7 @@ npm-debug.log*
 
 /android/.idea
 
-// firebase
+# firebase
 .firebaserc
 .firebase/*
 firebase.json
