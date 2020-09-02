@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
@@ -20,6 +20,8 @@ import {ImprintPage} from './pages/imprint/imprint.page';
 import {PrivacyPage} from './pages/privacy/privacy.page';
 import {SocialLinksComponent} from './components/social-links/social-links.component';
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
+import {IonicStorageModule} from '@ionic/storage';
+import {CookieConsentService} from './provider/cookie-consent.service';
 
 const contentfulConfig: ContentfulConfig = {
   spaceId: environment.spaceId,
@@ -41,6 +43,7 @@ const contentfulConfig: ContentfulConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot({mode: 'md'}),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -50,7 +53,15 @@ const contentfulConfig: ContentfulConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (cookieConsentService: CookieConsentService) => {
+        return () => cookieConsentService.initialize();
+      },
+      multi: true,
+      deps: [CookieConsentService],
+    },
   ],
   bootstrap: [AppComponent]
 })
