@@ -21,6 +21,7 @@ import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loa
 import {IonicStorageModule} from '@ionic/storage';
 import {CookieConsentService} from './provider/cookie-consent.service';
 import {CONFIG, AngularFireAnalyticsModule, UserTrackingService} from '@angular/fire/analytics';
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 const contentfulConfig: ContentfulConfig = {
   spaceId: environment.contentful.spaceId,
@@ -46,7 +47,8 @@ const contentfulConfig: ContentfulConfig = {
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase.config),
     AngularFireAnalyticsModule,
-    ContentfulModule.forRoot(contentfulConfig)
+    ContentfulModule.forRoot(contentfulConfig),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     StatusBar,
