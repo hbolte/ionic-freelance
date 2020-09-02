@@ -3,7 +3,6 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Privacy Policy</ion-title>
         <ion-buttons slot="end">
             <app-social-links></app-social-links>
         </ion-buttons>
@@ -12,11 +11,12 @@
 
 <ion-content>
 
-    <ion-grid class="ion-padding" fixed>
+    <ion-grid class="ion-margin-top ion-padding" fixed>
 
         <ion-row *ngIf="policy$ | async as policy; else loading">
             <ion-col>
-                <div class="inner-html" [innerHTML]="parseRichText(policy.content)"></div>
+                <img class="privacy__illustration" src="assets/img/illustration-privacy.svg" alt="">
+                <div class="privacy__inner-html" [innerHTML]="parseRichText(policy.content)"></div>
             </ion-col>
         </ion-row>
 

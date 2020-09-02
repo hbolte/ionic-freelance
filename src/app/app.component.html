@@ -1,43 +1,23 @@
-<ion-menu *ngIf="settings" contentId="menu-content" [type]="settings.menuType">
-    <ion-header class="ion-no-border">
-        <ion-toolbar>
-            <ion-title class="logo ion-text-center">{{settings.menuTitle}}</ion-title>
-        </ion-toolbar>
-    </ion-header>
-    <ion-content>
+<ion-split-pane contentId="menu-content">
+    <ion-menu contentId="menu-content" type="push">
+        <ion-content>
+            <ion-row style="height: 100%">
+                <ion-col class="ion-align-self-center">
+                    <ion-list lines="none">
+                        <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+                            <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                                <ion-label>
+                                    {{p.title}}
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-content>
+    </ion-menu>
 
-        <!-- app pages -->
-        <ion-list lines="full">
-            <ion-list-header>
-                <ion-label color="primary">Nav</ion-label>
-            </ion-list-header>
-            <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-                <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="true">
-                    <ion-label>
-                        {{p.title}}
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-        </ion-list>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+</ion-split-pane>
 
-        <!-- legal pages -->
-        <ion-list lines="full" class="ion-margin-top">
-            <ion-list-header>
-                <ion-label color="primary">Legal</ion-label>
-            </ion-list-header>
-            <ion-menu-toggle autoHide="false" *ngFor="let p of legalPages; let i = index">
-                <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="true">
-                    <ion-label>
-                        {{p.title}}
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-        </ion-list>
-    </ion-content>
-    <ion-footer class="ion-text-center" *ngIf="getAppVersion()">
-        <p>{{getAppVersion()}}</p>
-    </ion-footer>
-</ion-menu>
-
-<!-- main content -->
-<ion-router-outlet id="menu-content"></ion-router-outlet>

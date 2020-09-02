@@ -1,51 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Observable} from 'rxjs';
-import {IPersonal} from '../../core/interfaces/personal.interface';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {AppService} from '../../core/provider/app.service';
-import {ISettings} from '../../core/interfaces/settings.interface';
-import {ModalController} from '@ionic/angular';
-import {BioPage} from './bio/bio.page';
-import {map} from 'rxjs/operators';
+import {IAuthor} from '../../core/models/personal.interface';
+import {ContentfulService} from '../../core/contentful/provider/contentful.service';
 
 
 @Component({
   selector: 'app-about',
   templateUrl: 'about.component.html',
-  styleUrls: ['about.component.scss']
+  styleUrls: ['about.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AboutPage {
 
-  public team$: Observable<IPersonal[]>;
-  public settings$: Observable<ISettings>;
+  public author$: Observable<IAuthor>;
 
   constructor(
-    private afs: AngularFirestore,
-    private app: AppService,
-    private modalCtrl: ModalController) {
+    private contentfulService: ContentfulService) {
   }
 
   public ionViewDidEnter() {
-    this.settings$ = this.afs.doc<ISettings>('settings/app').valueChanges();
-
-    // for team members we need the unique document id
-    this.team$ = this.afs.collection('team').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as IPersonal;
-        const id = a.payload.doc.id;
-        return {id, ...data};
-      }))
-    );
+    this.author$ = this.contentfulService.getAuthor();
   }
 
-  public async openBiography(person: IPersonal) {
-    const modal = await this.modalCtrl.create({
-      component: BioPage,
-      componentProps: {
-        person
-      }
-    });
-
-    await modal.present();
+  public parseRichText(richText: any) {
+    return this.contentfulService.parseRichText(richText);
   }
 }

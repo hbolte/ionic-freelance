@@ -1,6 +1,11 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {AboutPageModule} from './pages/about/about.module';
+import {AboutPage} from './pages/about/about.component';
+import {ContactPage} from './pages/contact/contact.component';
+import {ImprintPage} from './pages/imprint/imprint.page';
+import {PrivacyPage} from './pages/privacy/privacy.page';
+import {SkillsPage} from './pages/skills/skills.page';
+import {ProjectsPage} from './pages/projects/projects.component';
 
 const routes: Routes = [
   {
@@ -10,27 +15,27 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadChildren: () => import('./pages/about/about.module').then(m => AboutPageModule)
+    component: AboutPage
   },
   {
     path: 'projects',
-    loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsPageModule)
+    component: ProjectsPage
   },
   {
     path: 'skills',
-    loadChildren: () => import('./pages/skills/skills.module').then(m => m.SkillsPageModule)
+    component: SkillsPage
   },
   {
     path: 'contact',
-    loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
+    component: ContactPage
   },
   {
     path: 'imprint',
-    loadChildren: () => import('./pages/imprint/imprint.module').then( m => m.ImprintPageModule)
+    component: ImprintPage
   },
   {
     path: 'privacy',
-    loadChildren: () => import('./pages/privacy/privacy.module').then( m => m.PrivacyPageModule)
+    component: PrivacyPage
   }
 ];
 

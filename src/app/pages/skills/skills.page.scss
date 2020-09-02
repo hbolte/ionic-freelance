@@ -1,15 +1,26 @@
-.h100 {
-  height: 100%;
+.skills {
+
+  &__icon-wrapper {
+    height: 72px;
+    width:  72px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--ion-color-primary);
+    border-right: 1px solid var(--ion-color-primary);
+  }
+
+  ion-icon {
+    color: var(--ion-color-medium);
+    font-size: 48px;
+  }
+
+  &__illustration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 33vw;
+    margin: 16px;
+    z-index: 2;
+  }
+
 }
 
-.icon {
-  height: 64px;
-  width:  64px;
-  margin: 0 auto;
-  background: linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.07));
-  border-radius: 10px;
-}
-
-ion-icon {
-  font-size: 38px;
-}

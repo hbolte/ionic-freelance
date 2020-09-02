@@ -3,7 +3,6 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>About</ion-title>
         <ion-buttons slot="end">
             <app-social-links></app-social-links>
         </ion-buttons>
@@ -12,51 +11,35 @@
 
 <ion-content>
 
-    <ng-container *ngIf="{settings: settings$ | async, team: team$ | async} as data">
-        <ion-grid *ngIf="data.team && data.settings; else loading" class="ion-padding" fixed>
+    <ion-grid *ngIf="author$ | async as author; else loading" class="ion-margin-top ion-padding" fixed>
+        <ion-row>
+            <ion-col>
+                <h1>{{author.name}}</h1>
+                <ion-text color="medium">
+                    <h4>{{author.profession}}</h4>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <img src="assets/img/illustration-about.svg" alt="">
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <p class="bio" [innerHTML]="parseRichText(author.bio)"></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-            <!-- headline -->
-            <ion-row>
-                <ion-col class="ion-text-center">
-                    <h1 class="ion-text-center">{{data.settings.title}}</h1>
-                    <ion-text color="medium" class="ion-text-center">
-                        <p class="subtitle">{{data.settings.subTitle}}</p>
-                    </ion-text>
+    <ng-template #loading>
+        <ion-grid style="height: 100%">
+            <ion-row style="height: 100%">
+                <ion-col class="ion-align-self-center ion-text-center">
+                    <ion-spinner name="bubbles"></ion-spinner>
                 </ion-col>
             </ion-row>
-
-            <!-- team -->
-            <ion-row class="team">
-                <ion-col *ngFor="let partner of data.team" sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
-                    <ion-card button="true" (click)="openBiography(partner)">
-                        <ion-card-header class="ion-text-center">
-                            <ion-card-title>{{partner.name}}</ion-card-title>
-                            <ion-card-subtitle>{{partner.profession}}</ion-card-subtitle>
-                            <ion-icon class="ion-margin-top" size="small" name="open-outline"></ion-icon>
-                        </ion-card-header>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-
-            <!-- logo -->
-            <ion-row class="illustration">
-                <ion-col>
-                    <img src="assets/img/about/app.svg"/>
-                </ion-col>
-            </ion-row>
-
         </ion-grid>
-
-        <ng-template #loading>
-            <ion-grid style="height: 100%">
-                <ion-row style="height: 100%">
-                    <ion-col class="ion-align-self-center ion-text-center">
-                        <ion-spinner name="bubbles"></ion-spinner>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ng-template>
-
-    </ng-container>
+    </ng-template>
 
 </ion-content>

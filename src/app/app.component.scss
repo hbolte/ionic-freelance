@@ -1,12 +1,21 @@
-.logo {
-  font-family: 'Mr De Haviland', cursive;
-  font-size: 24px;
+ion-split-pane {
+  --side-max-width: 200px;
+  --border: none;
+}
+
+ion-menu > ion-content {
+  --ion-background-color: linear-gradient(90deg, rgb(231, 231, 231) 0%, rgba(253,253,253,1) 100%);;
+}
+
+ion-item {
+  --background: none;
+  max-width: 200px;
 }
 
 .active {
-  --ion-background-color: var(--ion-color-light-shade);
+  border-bottom: 1px solid var(--ion-color-primary);
 
-  ion-icon {
-    color: inherit;
+  > ion-label, ion-icon {
+    color: var(--ion-color-primary);;
   }
 }

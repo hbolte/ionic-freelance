@@ -1,6 +1,18 @@
-.inner-html {
-  h4 {
-    margin-top: 32px;
-    font-weight: 700;
+.privacy {
+
+  &__inner-html {
+    float: none;
+
+    h4 {
+      margin-top: 32px;
+      font-weight: 700;
+    }
   }
+
+  &__illustration {
+    max-width: 25vw;
+    float: right;
+    margin: 16px
+  }
+
 }

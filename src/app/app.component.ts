@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
 import {Platform} from '@ionic/angular';
-import {AppService} from './core/provider/app.service';
-import {ISettings} from './core/interfaces/settings.interface';
-import {DeviceInfo, Plugins, StatusBarStyle} from '@capacitor/core';
+import {ILegal} from './core/models/legal.interface';
+import {Plugins, StatusBarStyle} from '@capacitor/core';
 
-const {Device} = Plugins;
 const {StatusBar} = Plugins;
 const {SplashScreen} = Plugins;
 
@@ -18,47 +16,44 @@ export class AppComponent {
   public appPages = [
     {
       title: 'About',
-      url: '/about'
+      url: '/about',
+      icon: 'person-outline'
     },
     {
       title: 'Projects',
-      url: '/projects'
+      url: '/projects',
+      icon: 'code-outline'
     },
     {
       title: 'Skills',
-      url: '/skills'
+      url: '/skills',
+      icon: 'school-outline'
     },
     {
       title: 'Contact',
-      url: '/contact'
-    }
-  ];
-
-  public legalPages = [
+      url: '/contact',
+      icon: 'mail-unread-outline'
+    },
     {
       title: 'Imprint',
-      url: '/imprint'
+      url: '/imprint',
+      icon: 'business-outline'
     },
     {
       title: 'Privacy',
-      url: '/privacy'
+      url: '/privacy',
+      icon: 'lock-closed-outline'
     }
   ];
 
-  public settings: ISettings;
-  public info: DeviceInfo;
+  public settings: ILegal;
 
   constructor(
-    private platform: Platform,
-    private app: AppService) {
+    private platform: Platform) {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.app.listen();
-
-    this.app.settings$.subscribe(data => this.settings = data);
-
     this.platform.ready().then(() => {
       if (this.platform.is('hybrid')) {
         StatusBar.setStyle({
@@ -69,14 +64,5 @@ export class AppComponent {
       }
     });
 
-    this.getDeviceInfo();
-  }
-
-  private async getDeviceInfo() {
-    this.info = await Device.getInfo();
-  }
-
-  public getAppVersion(): string {
-    return this.info && this.info.appVersion ? this.info.appVersion : null;
   }
 }

@@ -1,4 +1,17 @@
+.contact {
 
-.img-contact {
-  max-width: 400px;
+  &__item {
+    border-left: 2px solid var(--ion-color-primary);
+  }
+
+  &__illustration {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-height: 50vh;
+    max-width: 66vw;
+    margin: 16px;
+    z-index: 2;
+  }
+
 }

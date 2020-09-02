@@ -37,6 +37,16 @@ export class ContentfulService {
     }));
   }
 
+  public getAuthor(query?: any): Observable<any> {
+    return from(
+      this.client.getEntries(Object.assign({
+        content_type: 'author'
+      }, query))
+    ).pipe(map((collection: ContentfulCollection<any>) => {
+      return collection.items[0].fields
+    }));
+  }
+
   public getLegalEntry(legalType: ContentTypeLegal, query?: any): Observable<any> {
     return from(
       this.client.getEntries(Object.assign({

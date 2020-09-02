@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {IProject} from '../../core/models/project.interface';
 import {Plugins} from '@capacitor/core';
 import {ContentfulService} from '../../core/contentful/provider/contentful.service';
-import {documentToHtmlString} from '@contentful/rich-text-html-renderer';
 
 const {Browser} = Plugins;
 
@@ -32,6 +31,6 @@ export class ProjectsPage {
   }
 
   public parseRichText(richText: any) {
-    return documentToHtmlString(richText);
+    return this.contentfulService.parseRichText(richText);
   }
 }

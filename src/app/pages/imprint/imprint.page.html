@@ -3,7 +3,6 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Imprint</ion-title>
         <ion-buttons slot="end">
             <app-social-links></app-social-links>
         </ion-buttons>
@@ -14,20 +13,20 @@
 
     <ion-grid class="ion-padding" fixed>
 
-        <ion-row *ngIf="imprint$ | async as imprint; else loading">
-            <ion-col size="6" sizeSm="12" sizeXs="12" sizeMd="6" sizeLg="6" sizeXl="6">
-                <div [innerHTML]="parseRichText(imprint.content)"></div>
-            </ion-col>
+        <div *ngIf="imprint$ | async as imprint; else loading">
 
-            <ion-col size="6" sizeSm="12" sizeXs="12" sizeMd="6" sizeLg="6" sizeXl="6" class="ion-align-self-center ion-text-center">
-                <img class="img-legal" src="assets/img/illustration-imprint.svg" alt="">
-            </ion-col>
-        </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div [innerHTML]="parseRichText(imprint.content)"></div>
+                </ion-col>
+            </ion-row>
+        </div>
 
         <ng-template #loading>
             <app-skeleton-loader lines="5"></app-skeleton-loader>
         </ng-template>
 
+        <img class="legal__illustration" src="assets/img/illustration-imprint.svg" alt="">
     </ion-grid>
 
 </ion-content>
