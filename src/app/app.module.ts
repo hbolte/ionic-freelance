@@ -8,8 +8,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {ContentfulModule} from './core/contentful/contentful-module';
 import {ContentfulConfig} from './core/contentful/models/contentful-config';
 import {AboutPage} from './pages/about/about.component';
@@ -22,6 +20,7 @@ import {SocialLinksComponent} from './components/social-links/social-links.compo
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
 import {IonicStorageModule} from '@ionic/storage';
 import {CookieConsentService} from './provider/cookie-consent.service';
+import {CONFIG, AngularFireAnalyticsModule, UserTrackingService} from '@angular/fire/analytics';
 
 const contentfulConfig: ContentfulConfig = {
   spaceId: environment.spaceId,
@@ -46,14 +45,17 @@ const contentfulConfig: ContentfulConfig = {
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence(),
+    AngularFireAnalyticsModule,
     ContentfulModule.forRoot(contentfulConfig)
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    UserTrackingService,
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: (cookieConsentService: CookieConsentService) => {
@@ -62,6 +64,14 @@ const contentfulConfig: ContentfulConfig = {
       multi: true,
       deps: [CookieConsentService],
     },
+    {
+      provide: CONFIG,
+      useValue: {
+        send_page_view: environment.sendPageViews,
+        allow_ad_personalization_signals: false,
+        anonymize_ip: true
+      }
+    }
   ],
   bootstrap: [AppComponent]
 })

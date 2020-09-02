@@ -12,4 +12,5 @@ export const environment = {
   },
   spaceId: '<SPACE_ID>',
   accessToken: '<ACCESS_TOKEN>',
+  sendPageViews: true
 };
