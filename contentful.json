@@ -1,0 +1,235 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "id": "projects",
+        "type": "ContentType"
+      },
+      "displayField": "title",
+      "name": "Projects",
+      "description": "",
+      "fields": [
+        {
+          "id": "title",
+          "name": "title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "description",
+          "type": "RichText",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "link",
+          "name": "link",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "createdAt",
+          "name": "createdAt",
+          "type": "Date",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "skills",
+        "type": "ContentType"
+      },
+      "displayField": "name",
+      "name": "Skills",
+      "description": "",
+      "fields": [
+        {
+          "id": "name",
+          "name": "name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "ionicon",
+          "name": "ionicon",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "social",
+        "type": "ContentType"
+      },
+      "displayField": "name",
+      "name": "Social",
+      "description": "",
+      "fields": [
+        {
+          "id": "name",
+          "name": "name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "inToolbar",
+          "name": "inToolbar",
+          "type": "Boolean",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "ionicon",
+          "name": "ionicon",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "url",
+          "name": "url",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "author",
+        "type": "ContentType"
+      },
+      "displayField": "name",
+      "name": "Author",
+      "description": "",
+      "fields": [
+        {
+          "id": "name",
+          "name": "name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "bio",
+          "name": "bio",
+          "type": "RichText",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "profession",
+          "name": "profession",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "legal",
+        "type": "ContentType"
+      },
+      "displayField": "title",
+      "name": "Legal",
+      "description": "",
+      "fields": [
+        {
+          "id": "title",
+          "name": "title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "content",
+          "name": "content",
+          "type": "RichText",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
+  ]
+}
