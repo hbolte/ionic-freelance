@@ -1,13 +1,15 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyBfX_k7AkKku9nxGJ4JWwP1QAwBTHwUGw4',
-    authDomain: 'hbolte-me.firebaseapp.com',
-    databaseURL: 'https://hbolte-me.firebaseio.com',
-    projectId: 'hbolte-me',
-    storageBucket: 'hbolte-me.appspot.com',
-    messagingSenderId: '716045069932',
-    appId: '1:716045069932:web:6b65e76690db39ea423249',
-    measurementId: 'G-PP9EZ8YMDG'
-  }
+    apiKey: '<API_KEY>',
+    authDomain: '<AUTH_DOMAIN>',
+    databaseURL:  '<DATABASE_URL>',
+    projectId: '<PROJECT_ID>',
+    storageBucket: '<STORAGE_BUCKET>',
+    messagingSenderId: '<MESSAGE_SENDER_ID>',
+    appId: '<APP_ID>',
+    measurementId: '<MEASUREMENT_ID>',
+  },
+  spaceId: '<SPACE_ID>',
+  accessToken: '<ACCESS_TOKEN>',
 };
