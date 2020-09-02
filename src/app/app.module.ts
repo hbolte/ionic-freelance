@@ -23,8 +23,8 @@ import {CookieConsentService} from './provider/cookie-consent.service';
 import {CONFIG, AngularFireAnalyticsModule, UserTrackingService} from '@angular/fire/analytics';
 
 const contentfulConfig: ContentfulConfig = {
-  spaceId: environment.spaceId,
-  accessToken: environment.accessToken
+  spaceId: environment.contentful.spaceId,
+  accessToken: environment.contentful.accessToken
 }
 
 @NgModule({
@@ -44,7 +44,7 @@ const contentfulConfig: ContentfulConfig = {
     IonicModule.forRoot({mode: 'md'}),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase.config),
     AngularFireAnalyticsModule,
     ContentfulModule.forRoot(contentfulConfig)
   ],
@@ -67,7 +67,7 @@ const contentfulConfig: ContentfulConfig = {
     {
       provide: CONFIG,
       useValue: {
-        send_page_view: environment.sendPageViews,
+        send_page_view: environment.firebase.analytics.sendPageViews,
         allow_ad_personalization_signals: false,
         anonymize_ip: true
       }
