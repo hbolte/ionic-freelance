@@ -20,7 +20,7 @@ import {SocialLinksComponent} from './components/social-links/social-links.compo
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
 import {IonicStorageModule} from '@ionic/storage';
 import {CookieConsentService} from './provider/cookie-consent.service';
-import {CONFIG, AngularFireAnalyticsModule, UserTrackingService} from '@angular/fire/analytics';
+import {CONFIG, AngularFireAnalyticsModule, ScreenTrackingService} from '@angular/fire/analytics';
 import {ServiceWorkerModule} from '@angular/service-worker';
 
 const contentfulConfig: ContentfulConfig = {
@@ -53,7 +53,7 @@ const contentfulConfig: ContentfulConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    UserTrackingService,
+    ScreenTrackingService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
