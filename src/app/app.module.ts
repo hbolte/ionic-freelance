@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, isDevMode, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
@@ -20,7 +20,7 @@ import {SocialLinksComponent} from './components/social-links/social-links.compo
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
 import {IonicStorageModule} from '@ionic/storage';
 import {CookieConsentService} from './provider/cookie-consent.service';
-import {CONFIG, AngularFireAnalyticsModule, ScreenTrackingService} from '@angular/fire/analytics';
+import {CONFIG, AngularFireAnalyticsModule, ScreenTrackingService, DEBUG_MODE} from '@angular/fire/analytics';
 import {ServiceWorkerModule} from '@angular/service-worker';
 
 const contentfulConfig: ContentfulConfig = {
@@ -73,7 +73,11 @@ const contentfulConfig: ContentfulConfig = {
         allow_ad_personalization_signals: false,
         anonymize_ip: true
       }
-    }
+    },
+    {
+      provide: DEBUG_MODE,
+      useFactory: () => isDevMode()
+    },
   ],
   bootstrap: [AppComponent]
 })
