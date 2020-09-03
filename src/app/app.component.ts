@@ -42,7 +42,7 @@ export class AppComponent {
     {
       title: 'Privacy',
       url: '/privacy',
-      icon: 'lock-closed-outline'
+      icon: 'shield-checkmark-outline'
     }
   ];
 
