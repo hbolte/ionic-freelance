@@ -25,7 +25,9 @@ export class SkillsPage {
   }
 
   public ionViewDidEnter() {
-    this.skills$ = this.contentfulService.getEntries('skills');
+    this.skills$ = this.contentfulService.getEntries('skills', {
+      order: 'sys.createdAt',
+    });
   }
 
 }
