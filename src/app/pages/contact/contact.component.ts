@@ -1,30 +1,28 @@
-import {Component} from '@angular/core';
-import {Plugins} from '@capacitor/core';
-import {ISocialLink} from '../../core/models/social.interface';
-import {Observable} from 'rxjs';
-import {ContentfulService} from '../../core/contentful/provider/contentful.service';
+import {Component} from '@angular/core'
+import {Plugins} from '@capacitor/core'
+import {ISocialLink} from '../../core/models/social.interface'
+import {Observable} from 'rxjs'
+import {ContentfulService} from '../../core/contentful/provider/contentful.service'
 
-const {Browser} = Plugins;
+const {Browser} = Plugins
 
 @Component({
   selector: 'app-contact',
   templateUrl: 'contact.component.html',
-  styleUrls: ['contact.component.scss']
+  styleUrls: ['contact.component.scss'],
 })
 export class ContactPage {
+  public links$: Observable<ISocialLink[]>
 
-  public links$: Observable<ISocialLink[]>;
-
-  constructor(private contentfulService: ContentfulService) {
-  }
+  constructor(private contentfulService: ContentfulService) {}
 
   public ionViewDidEnter() {
-    this.links$ = this.contentfulService.getEntries('social');
+    this.links$ = this.contentfulService.getEntries('social')
   }
 
   public async openLink(link: ISocialLink) {
     await Browser.open({
-      url: link.url
-    });
+      url: link.url,
+    })
   }
 }

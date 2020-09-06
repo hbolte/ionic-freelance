@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {ISkill} from '../../core/models/skill.interface';
-import {Observable} from 'rxjs';
-import {ContentfulService} from '../../core/contentful/provider/contentful.service';
+import {Component} from '@angular/core'
+import {ISkill} from '../../core/models/skill.interface'
+import {Observable} from 'rxjs'
+import {ContentfulService} from '../../core/contentful/provider/contentful.service'
 
 @Component({
   selector: 'app-skills',
@@ -9,25 +9,22 @@ import {ContentfulService} from '../../core/contentful/provider/contentful.servi
   styleUrls: ['./skills.page.scss'],
 })
 export class SkillsPage {
-
-  public skills$: Observable<ISkill[]>;
+  public skills$: Observable<ISkill[]>
 
   public options = {
     initialSlide: 0,
     speed: 500,
     autoplay: {
-      delay: 4000
+      delay: 4000,
     },
-    loop: true
-  };
-
-  constructor(private contentfulService: ContentfulService) {
+    loop: true,
   }
+
+  constructor(private contentfulService: ContentfulService) {}
 
   public ionViewDidEnter() {
     this.skills$ = this.contentfulService.getEntries('skills', {
       order: 'sys.createdAt',
-    });
+    })
   }
-
 }

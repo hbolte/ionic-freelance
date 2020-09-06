@@ -1,4 +1,6 @@
-import {InjectionToken} from '@angular/core';
-import {ContentfulConfig} from '../models/contentful-config';
+import {InjectionToken} from '@angular/core'
+import {ContentfulConfig} from '../models/contentful-config'
 
-export const ContentfulConfigService = new InjectionToken<ContentfulConfig>('ContentfulConfig');
+export const ContentfulConfigService = new InjectionToken<ContentfulConfig>(
+  'ContentfulConfig'
+)

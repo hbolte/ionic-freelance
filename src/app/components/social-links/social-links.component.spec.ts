@@ -1,27 +1,26 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { SocialLinksComponent } from './social-links.component';
+import {SocialLinksComponent} from './social-links.component'
 
 describe('SocialLinksComponent', () => {
-  let component: SocialLinksComponent;
-  let fixture: ComponentFixture<SocialLinksComponent>;
+  let component: SocialLinksComponent
+  let fixture: ComponentFixture<SocialLinksComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SocialLinksComponent ],
+      declarations: [SocialLinksComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
-  }));
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SocialLinksComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(SocialLinksComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

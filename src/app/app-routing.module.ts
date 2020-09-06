@@ -1,49 +1,48 @@
-import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {AboutPage} from './pages/about/about.component';
-import {ContactPage} from './pages/contact/contact.component';
-import {ImprintPage} from './pages/imprint/imprint.page';
-import {PrivacyPage} from './pages/privacy/privacy.page';
-import {SkillsPage} from './pages/skills/skills.page';
-import {ProjectsPage} from './pages/projects/projects.component';
+import {NgModule} from '@angular/core'
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router'
+import {AboutPage} from './pages/about/about.component'
+import {ContactPage} from './pages/contact/contact.component'
+import {ImprintPage} from './pages/imprint/imprint.page'
+import {PrivacyPage} from './pages/privacy/privacy.page'
+import {SkillsPage} from './pages/skills/skills.page'
+import {ProjectsPage} from './pages/projects/projects.component'
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/about',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'about',
-    component: AboutPage
+    component: AboutPage,
   },
   {
     path: 'projects',
-    component: ProjectsPage
+    component: ProjectsPage,
   },
   {
     path: 'skills',
-    component: SkillsPage
+    component: SkillsPage,
   },
   {
     path: 'contact',
-    component: ContactPage
+    component: ContactPage,
   },
   {
     path: 'imprint',
-    component: ImprintPage
+    component: ImprintPage,
   },
   {
     path: 'privacy',
-    component: PrivacyPage
-  }
-];
+    component: PrivacyPage,
+  },
+]
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

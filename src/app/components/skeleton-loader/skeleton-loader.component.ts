@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core'
 
 @Component({
   selector: 'app-skeleton-loader',
@@ -6,15 +6,16 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
   styleUrls: ['./skeleton-loader.component.scss'],
 })
 export class SkeletonLoaderComponent implements OnChanges {
+  @Input() public lines = 4
 
-  @Input() public lines = 4;
+  public array: number[]
 
-  public array: number[];
-
-  constructor() {
-  }
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.array = Array.apply(null, {length: this.lines}).map(Number.call, Number);
+    this.array = Array.apply(null, {length: this.lines}).map(
+      Number.call,
+      Number
+    )
   }
 }

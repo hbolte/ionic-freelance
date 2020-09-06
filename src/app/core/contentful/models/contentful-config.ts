@@ -1,4 +1,4 @@
 export interface ContentfulConfig {
-  spaceId: string;
-  accessToken: string;
+  spaceId: string
+  accessToken: string
 }

@@ -1,4 +1,4 @@
 export interface ILegal {
-  title: string,
+  title: string
   content: any
 }

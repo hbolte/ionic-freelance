@@ -1,4 +1,4 @@
 export interface ISkill {
-  name: string,
+  name: string
   ionicon: string
 }

@@ -1,7 +1,7 @@
 export interface IAuthor {
-  id: string,
-  name: string,
-  profession: string,
-  bio: string,
+  id: string
+  name: string
+  profession: string
+  bio: string
   about: string
 }

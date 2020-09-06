@@ -1,7 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ILegal} from '../../core/models/legal.interface';
-import {ContentfulService, ContentTypeLegal} from '../../core/contentful/provider/contentful.service';
+import {Component, ViewEncapsulation} from '@angular/core'
+import {Observable} from 'rxjs'
+import {ILegal} from '../../core/models/legal.interface'
+import {
+  ContentfulService,
+  ContentTypeLegal,
+} from '../../core/contentful/provider/contentful.service'
 
 @Component({
   selector: 'app-privacy',
@@ -10,18 +13,17 @@ import {ContentfulService, ContentTypeLegal} from '../../core/contentful/provide
   encapsulation: ViewEncapsulation.None,
 })
 export class PrivacyPage {
+  public policy$: Observable<ILegal>
 
-  public policy$: Observable<ILegal>;
-
-  constructor(private contentfulService: ContentfulService) {
-  }
+  constructor(private contentfulService: ContentfulService) {}
 
   public ionViewDidEnter() {
-    this.policy$ = this.contentfulService.getLegalEntry(ContentTypeLegal.PRIVACY);
+    this.policy$ = this.contentfulService.getLegalEntry(
+      ContentTypeLegal.PRIVACY
+    )
   }
 
   public parseRichText(richText: any) {
-    return this.contentfulService.parseRichText(richText);
+    return this.contentfulService.parseRichText(richText)
   }
-
 }
