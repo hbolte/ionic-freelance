@@ -184,6 +184,18 @@
           ],
           "disabled": false,
           "omitted": false
+        },
+        {
+          "id": "thumbnail",
+          "name": "thumbnail",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
         }
       ]
     },
