@@ -9,9 +9,16 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format": "prettier --write 'src/**/*.ts'"
   },
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && ng lint && ng test --watch=false",
+      "pre-push": "ng build --aot true"
+    }
+  },
   "dependencies": {
     "@angular/common": "~9.0.0",
     "@angular/core": "~9.0.0",
@@ -53,6 +60,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "~13.7.0",
     "codelyzer": "^5.2.1",
+    "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -60,9 +68,12 @@
     "karma-coverage-istanbul-reporter": "~2.1.1",
     "karma-jasmine": "~3.1.0",
     "karma-jasmine-html-reporter": "^1.5.2",
+    "prettier": "^2.1.1",
+    "pretty-quick": "^3.0.0",
     "protractor": "~5.4.3",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.7.5"
   },
   "description": "An Ionic project"
