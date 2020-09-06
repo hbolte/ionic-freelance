@@ -17,10 +17,26 @@
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 33vw;
     margin: 16px;
     z-index: 2;
   }
 
 }
 
+@media screen and ( min-width: 300px) {
+  .skills__illustration {
+    max-width: 45vw;
+  }
+}
+
+@media screen and ( min-width: 540px) {
+  .skills__illustration {
+    max-width: 35vw;
+  }
+}
+
+@media screen and ( min-width: 720px) {
+  .skills__illustration {
+    max-width: 25vw;
+  }
+}
