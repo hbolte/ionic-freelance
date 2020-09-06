@@ -1,8 +1,8 @@
 {
-  "name": "hbolte",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "ionic-freelancer",
+  "version": "1.0.0",
+  "author": "Henrik Bolte",
+  "homepage": "https://github.com/hbolte/ionic-freelance",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -75,5 +75,5 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.7.5"
   },
-  "description": "An Ionic project"
+  "description": "Ionic PWA template for freelancer, developer and individual persons."
 }

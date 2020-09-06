@@ -2,7 +2,7 @@
 
 ## Description
 
-Ionic-Freelance is a lightweight, open-source and easy to use PWA template for freelancer, developer or individual persons who want 
+Ionic-Freelance is a lightweight, open-source and easy to use Ionic PWA template for freelancer, developer or individual persons who want 
 to share their business with the community and potential customers.
 
 ![Preview](./docs/img/preview.png)
