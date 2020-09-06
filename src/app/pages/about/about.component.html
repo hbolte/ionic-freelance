@@ -16,18 +16,18 @@
             <ion-col>
                 <h1>{{author.name}}</h1>
                 <ion-text color="medium">
-                    <h4>{{author.profession}}</h4>
+                    <h2>{{author.profession}}</h2>
                 </ion-text>
             </ion-col>
         </ion-row>
-        <ion-row class="ion-margin-top">
-            <ion-col>
+        <ion-row>
+            <ion-col class="ion-text-center">
                 <img src="assets/img/illustration-about.svg" alt="">
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
-                <p class="bio" [innerHTML]="parseRichText(author.bio)"></p>
+                <p class="about__bio" [innerHTML]="parseRichText(author.bio)"></p>
             </ion-col>
         </ion-row>
     </ion-grid>
