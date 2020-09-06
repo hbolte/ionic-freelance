@@ -3,9 +3,18 @@
         <ion-content>
             <ion-row style="height: 100%">
                 <ion-col class="ion-align-self-center">
+                    <ion-item *ngIf="author$ | async as author" class="ion-margin-end ion-margin-bottom" lines="full" detail="false">
+                        <ion-avatar slot="start">
+                            <ion-img [src]="author.thumbnail.fields.file.url" alt="logo"></ion-img>
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{author.name}}</h2>
+                            <p>{{author.profession}}</p>
+                        </ion-label>
+                    </ion-item>
                     <ion-list lines="none">
                         <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-                            <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root" detail="false">
+                            <ion-item [routerLink]="p.url" routerLinkActive="selected" routerDirection="root" detail="false">
                                 <ion-icon slot="start" [name]="p.icon"></ion-icon>
                                 <ion-label>
                                     {{p.title}}

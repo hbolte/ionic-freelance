@@ -1,7 +1,8 @@
+import {Asset} from 'contentful'
+
 export interface IAuthor {
-  id: string
   name: string
-  profession: string
   bio: string
-  about: string
+  profession: string
+  thumbnail: Asset
 }

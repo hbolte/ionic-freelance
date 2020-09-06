@@ -7,15 +7,38 @@ ion-menu > ion-content {
   --ion-background-color: linear-gradient(90deg, rgb(231, 231, 231) 0%, rgba(253,253,253,1) 100%);;
 }
 
-ion-item {
-  --background: none;
-  max-width: 200px;
+ion-item h4 {
+  margin-top: 10px;
 }
 
-.active {
-  border-bottom: 1px solid var(--ion-color-primary);
+ion-item.selected {
+  --color: var(--ion-color-primary);
+}
 
-  > ion-label, ion-icon {
-    color: var(--ion-color-primary);;
-  }
+ion-menu.md ion-list ion-item ion-icon {
+  margin-left: 5px;
+}
+
+ion-menu.md ion-list ion-item {
+  margin-top: 5px;
+  margin-right: 10px;
+  border-radius: 0 50px 50px 0;
+  font-weight: 500;
+}
+
+ion-menu.md ion-list ion-item.selected {
+  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+}
+
+ion-menu.md ion-list ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu.md ion-list ion-list-header,
+ion-menu.md ion-list ion-item ion-icon {
+  color: var(--ion-color-step-650, #5f6368);
+}
+
+ion-menu.md ion-list:not(:last-of-type) {
+  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
 }

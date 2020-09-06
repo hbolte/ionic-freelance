@@ -1,7 +1,9 @@
 import {Component} from '@angular/core'
 import {Platform} from '@ionic/angular'
-import {ILegal} from './core/models/legal.interface'
 import {Plugins, StatusBarStyle} from '@capacitor/core'
+import {IAuthor} from './core/models/personal.interface'
+import {ContentfulService} from './core/contentful/provider/contentful.service'
+import {Observable} from 'rxjs'
 
 const {StatusBar} = Plugins
 const {SplashScreen} = Plugins
@@ -45,13 +47,17 @@ export class AppComponent {
     },
   ]
 
-  public settings: ILegal
+  public author$: Observable<IAuthor>
 
-  constructor(private platform: Platform) {
+  constructor(
+    private platform: Platform,
+    private contentfulService: ContentfulService
+  ) {
     this.initializeApp()
   }
 
   initializeApp() {
+    this.author$ = this.contentfulService.getAuthor()
     this.platform.ready().then(() => {
       if (this.platform.is('hybrid')) {
         StatusBar.setStyle({
